@@ -41,6 +41,9 @@ class MainActivity : ComponentActivity() {
                     composable("screen4") {
                         Screen4(onNavigateBack = { navController.popBackStack() })
                     }
+                    composable("screen5") {
+                        Screen5(onNavigateBack = { navController.popBackStack() })
+                    }
                 }
             }
         }
@@ -68,7 +71,10 @@ fun MainScreen(navController: NavHostController) {
         CustomButton(label = "Button 4" ){
             navController.navigate("screen4")
         }
-        CustomButton(label = "Button 5")
+        CustomButton(label = "Button 5"){
+            navController.navigate("screen5")
+        }
+
     }
 }
 
