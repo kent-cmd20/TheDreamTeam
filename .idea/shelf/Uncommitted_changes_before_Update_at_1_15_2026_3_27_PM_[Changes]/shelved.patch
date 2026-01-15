@@ -1,0 +1,130 @@
+Index: app/src/main/java/com/example/thedreamteam/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.thedreamteam\r\n\r\nimport android.os.Bundle\r\nimport androidx.activity.ComponentActivity\r\nimport androidx.activity.compose.setContent\r\nimport androidx.activity.enableEdgeToEdge\r\nimport androidx.compose.foundation.Image\r\nimport androidx.compose.foundation.layout.Arrangement\r\nimport androidx.compose.foundation.layout.Column\r\nimport androidx.compose.foundation.layout.fillMaxSize\r\nimport androidx.compose.foundation.layout.height\r\nimport androidx.compose.foundation.layout.width\r\nimport androidx.compose.material3.Button\r\nimport androidx.compose.material3.Text\r\nimport androidx.compose.runtime.Composable\r\nimport androidx.compose.ui.Alignment\r\nimport androidx.compose.ui.Modifier\r\nimport androidx.compose.ui.res.painterResource\r\nimport androidx.compose.ui.unit.dp\r\nimport androidx.navigation.NavHostController\r\nimport androidx.navigation.compose.NavHost\r\nimport androidx.navigation.compose.composable\r\nimport androidx.navigation.compose.rememberNavController\r\nimport com.example.thedreamteam.ui.theme.TheDreamTeamTheme\r\n\r\nclass MainActivity : ComponentActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        enableEdgeToEdge()\r\n        setContent {\r\n            TheDreamTeamTheme {\r\n                val navController = rememberNavController() // Create the NavController\r\n\r\n                // Set up navigation graph\r\n                NavHost(navController = navController, startDestination = \"main\") {\r\n                    composable(\"main\") {\r\n                        MainScreen(navController)\r\n                    }\r\n                    composable(\"screen3\") {\r\n                        Screen3(onNavigateBack = { navController.popBackStack() })\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    }\r\n}\r\n\r\n@Composable\r\nfun MainScreen(navController: NavHostController) {\r\n    Column(\r\n        modifier = Modifier.fillMaxSize(),\r\n        verticalArrangement = Arrangement.Center,\r\n        horizontalAlignment = Alignment.CenterHorizontally\r\n    ) {\r\n        Image(\r\n            modifier = Modifier.width(200.dp).height(200.dp),\r\n            painter = painterResource(R.drawable.pogi),\r\n            contentDescription = null\r\n        )\r\n        Text(\"Kent Justine Asilo\")\r\n        CustomButton(label = \"Button 1\")\r\n        CustomButton(label = \"Button 2\")\r\n        CustomButton(label = \"Button 3\") {\r\n            navController.navigate(\"screen3\")\r\n        }\r\n        CustomButton(label = \"Button 4\")\r\n        CustomButton(label = \"Button 5\")\r\n    }\r\n}\r\n\r\n@Composable\r\nfun CustomButton(label: String, onClick: (() -> Unit)? = null) {\r\n    Button(onClick = { onClick?.invoke() }) {\r\n        Text(text = label)\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/thedreamteam/MainActivity.kt b/app/src/main/java/com/example/thedreamteam/MainActivity.kt
+--- a/app/src/main/java/com/example/thedreamteam/MainActivity.kt	(revision 4b1656fcf72b1013ff77da92ea66db4e57b8748d)
++++ b/app/src/main/java/com/example/thedreamteam/MainActivity.kt	(date 1768461977741)
+@@ -36,6 +36,10 @@
+                     composable("main") {
+                         MainScreen(navController)
+                     }
++                    composable("screen2") {
++                        Screen2(onNavigateBack = { navController.popBackStack() })
++                    }
++
+                     composable("screen3") {
+                         Screen3(onNavigateBack = { navController.popBackStack() })
+                     }
+@@ -59,7 +63,9 @@
+         )
+         Text("Kent Justine Asilo")
+         CustomButton(label = "Button 1")
+-        CustomButton(label = "Button 2")
++        CustomButton(label = "Button 2"){
++            navController.navigate("screen2")
++        }
+         CustomButton(label = "Button 3") {
+             navController.navigate("screen3")
+         }
+Index: app/src/main/java/com/example/thedreamteam/BioScreen2.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/thedreamteam/BioScreen2.kt b/app/src/main/java/com/example/thedreamteam/BioScreen2.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/thedreamteam/BioScreen2.kt	(revision 4b1656fcf72b1013ff77da92ea66db4e57b8748d)
++++ /dev/null	(revision 4b1656fcf72b1013ff77da92ea66db4e57b8748d)
+@@ -1,42 +0,0 @@
+-package com.example.thedreamteam
+-
+-import android.os.Bundle
+-import androidx.activity.ComponentActivity
+-import androidx.activity.compose.setContent
+-import androidx.activity.enableEdgeToEdge
+-import androidx.compose.foundation.Image
+-import androidx.compose.foundation.layout.Arrangement
+-import androidx.compose.foundation.layout.Column
+-import androidx.compose.foundation.layout.fillMaxSize
+-import androidx.compose.foundation.layout.height
+-import androidx.compose.foundation.layout.width
+-import androidx.compose.material3.Text
+-import androidx.compose.ui.Alignment
+-import androidx.compose.ui.Modifier
+-import androidx.compose.ui.res.painterResource
+-import androidx.compose.ui.unit.dp
+-import com.example.thedreamteam.ui.theme.TheDreamTeamTheme
+-
+-
+-class BioScreen2 : ComponentActivity() {
+-    override fun onCreate(savedInstanceState: Bundle?) {
+-        super.onCreate(savedInstanceState)
+-        enableEdgeToEdge()
+-        setContent {
+-            TheDreamTeamTheme {
+-                Column(
+-                    modifier = Modifier.fillMaxSize(),
+-                    verticalArrangement = Arrangement.Center,
+-                    horizontalAlignment = Alignment.CenterHorizontally
+-                ) {
+-                    Image(
+-                        modifier = Modifier.width(200.dp).height(200.dp),
+-                        painter = painterResource(R.drawable.anilas),
+-                        contentDescription = null
+-                    )
+-
+-                }
+-            }
+-        }
+-    }
+-}
+\ No newline at end of file
+Index: app/src/main/java/com/example/thedreamteam/Screen2.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/thedreamteam/Screen2.kt b/app/src/main/java/com/example/thedreamteam/Screen2.kt
+new file mode 100644
+--- /dev/null	(date 1768462017811)
++++ b/app/src/main/java/com/example/thedreamteam/Screen2.kt	(date 1768462017811)
+@@ -0,0 +1,38 @@
++package com.example.thedreamteam
++
++
++
++import androidx.compose.foundation.Image
++import androidx.compose.foundation.layout.Arrangement
++import androidx.compose.foundation.layout.Column
++import androidx.compose.foundation.layout.fillMaxSize
++import androidx.compose.foundation.layout.height
++import androidx.compose.foundation.layout.width
++import androidx.compose.material3.Button
++import androidx.compose.material3.Text
++import androidx.compose.runtime.Composable
++import androidx.compose.ui.Alignment
++import androidx.compose.ui.Modifier
++import androidx.compose.ui.res.painterResource
++import androidx.compose.ui.unit.dp
++
++@Composable
++fun Screen2(onNavigateBack: () -> Unit) {
++    Column(
++        modifier = Modifier.fillMaxSize(),
++        verticalArrangement = Arrangement.Center,
++        horizontalAlignment = Alignment.CenterHorizontally
++    ) {
++        Image(
++            modifier = Modifier.width(200.dp).height(200.dp),
++            painter = painterResource(R.drawable.anilas),
++            contentDescription = null
++        )
++
++        Text(text = "Marc Denzel M. Anilas")
++
++        Button(onClick = { onNavigateBack() }) {
++            Text("Go Back")
++        }
++    }
++}
