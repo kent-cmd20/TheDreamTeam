@@ -1,0 +1,46 @@
+Index: app/src/main/java/com/example/thedreamteam/Screen5.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/thedreamteam/Screen5.kt b/app/src/main/java/com/example/thedreamteam/Screen5.kt
+new file mode 100644
+--- /dev/null	(date 1768461993616)
++++ b/app/src/main/java/com/example/thedreamteam/Screen5.kt	(date 1768461993616)
+@@ -0,0 +1,36 @@
++package com.example.thedreamteam
++
++import androidx.compose.foundation.Image
++import androidx.compose.foundation.layout.Arrangement
++import androidx.compose.foundation.layout.Column
++import androidx.compose.foundation.layout.fillMaxSize
++import androidx.compose.foundation.layout.height
++import androidx.compose.foundation.layout.width
++import androidx.compose.material3.Button
++import androidx.compose.material3.Text
++import androidx.compose.runtime.Composable
++import androidx.compose.ui.Alignment
++import androidx.compose.ui.Modifier
++import androidx.compose.ui.res.painterResource
++import androidx.compose.ui.unit.dp
++
++@Composable
++fun Screen5(onNavigateBack: () -> Unit) {
++    Column(
++        modifier = Modifier.fillMaxSize(),
++        verticalArrangement = Arrangement.Center,
++        horizontalAlignment = Alignment.CenterHorizontally
++    ) {
++        Image(
++            modifier = Modifier.width(200.dp).height(200.dp),
++            painter = painterResource(R.drawable.git),
++            contentDescription = null
++        )
++
++        Text(text = "Jaspher CEDRICK Nolo G Asi")
++
++        Button(onClick = { onNavigateBack() }) {
++            Text("Go Back")
++        }
++    }
++}
