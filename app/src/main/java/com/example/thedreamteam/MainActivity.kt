@@ -29,9 +29,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             TheDreamTeamTheme {
-                val navController = rememberNavController() // Create the NavController
+                val navController = rememberNavController()
 
-                // Set up navigation graph
                 NavHost(navController = navController, startDestination = "main") {
                     composable("main") {
                         MainScreen(navController)
@@ -42,6 +41,9 @@ class MainActivity : ComponentActivity() {
 
                     composable("screen3") {
                         Screen3(onNavigateBack = { navController.popBackStack() })
+                    }
+                    composable("screen4") {
+                        Screen4(onNavigateBack = { navController.popBackStack() })
                     }
                 }
             }
@@ -69,7 +71,9 @@ fun MainScreen(navController: NavHostController) {
         CustomButton(label = "Button 3") {
             navController.navigate("screen3")
         }
-        CustomButton(label = "Button 4")
+        CustomButton(label = "Button 4" ){
+            navController.navigate("screen4")
+        }
         CustomButton(label = "Button 5")
     }
 }
